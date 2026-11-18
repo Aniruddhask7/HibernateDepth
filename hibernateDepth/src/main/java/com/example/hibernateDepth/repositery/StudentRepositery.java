@@ -42,6 +42,28 @@ public class StudentRepositery {
 
 
 
+    //saveAll
+
+    public void saveAll(List<Student>students){
+
+        int counter = 0;
+        for(int i=0;i<students.size();i++){
+            Student student = students.get(i);
+            entityManager.persist(student);
+            counter++;
+
+            if(counter %100 == 0){
+                entityManager.flush();
+                entityManager.clear();
+            }
+        }
+
+
+
+    }
+
+
+
 
 
 
