@@ -1,10 +1,8 @@
 package com.example.hibernateDepth.services;
-
 import com.example.hibernateDepth.entity.Student;
 import com.example.hibernateDepth.repositery.StudentRepositery;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -48,8 +46,7 @@ public class StudentServices {
 
         studRepo.remove(student);
     }
-
-
+    
     @Transactional
     public Student updateStudent(Student student, Long id) {
         Student existingStudent = studRepo.findById(Math.toIntExact(id));
@@ -57,14 +54,13 @@ public class StudentServices {
         if (existingStudent == null) {
             throw new RuntimeException("Student not found with id: " + id);
         }
-
-        existingStudent.setId(student.getId());
+        
         existingStudent.setName(student.getName());
         existingStudent.setEmail(student.getEmail());
+        existingStudent.setId(student.hetId());
         existingStudent.setAddress(student.getAddress());
 
         return existingStudent;
     }
-
 
 }
